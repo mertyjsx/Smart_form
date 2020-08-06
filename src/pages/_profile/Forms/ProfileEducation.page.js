@@ -70,7 +70,18 @@ class ProfilePersonalPage extends React.Component {
     this.setState({ [name]: value });
   }
 
+handleEdit=(obj)=>{
+  let uni_Array=this.state.universty
+  console.log(obj)
+  let index =uni_Array.findIndex(item=>item.uni_id===obj.uni_id)
+uni_Array[index]=obj
 
+
+console.log(uni_Array)
+this.setState({universty:uni_Array})
+
+
+}
   handleCheckbox = (name, e) => {
     let array = e ? e : []
 
@@ -179,7 +190,7 @@ class ProfilePersonalPage extends React.Component {
 
 
   delete = (school) => {
-    let school_array = this.state.universty.filter(item => item !== school)
+    let school_array = this.state.universty.filter(item => item.uni_id !== school)
 
 
     this.setState({ universty: school_array })
@@ -332,8 +343,10 @@ class ProfilePersonalPage extends React.Component {
             }
             <h5 className="m-30">Universty</h5>
             <Univertsy
-
-              handleCheckbox={this.handleCheckbox} deleteSchool={this.delete} schools={this.state.universty} add={this.addSchoolToArray}></Univertsy>
+pub={this.state.public}
+pri={this.state.private}
+resume={this.state.resume}
+              handleCheckbox={this.handleCheckbox} deleteSchool={this.delete} schools={this.state.universty} add={this.addSchoolToArray} changeIt={this.handleEdit}></Univertsy>
           </Grid>
           <div className="form-input-flex d-flex center">
             <div className="left-input-se">
